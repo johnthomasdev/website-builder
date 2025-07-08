@@ -1,0 +1,257 @@
+:root {
+  --background: #000000;
+  --text-primary: #ffffff;
+  --text-secondary: #8d8d92;
+  --text-placeholder: #545458;
+  --input-background: #111112;
+  --input-border: #2c2c2e;
+  --button-background: #1c1c1e;
+  --button-hover-background: #2c2c2e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: row; /* Change to row for side-by-side layout */
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  padding: 0; /* Remove padding */
+  overflow: hidden; /* Prevent scrolling on the main container */
+}
+
+.main-content {
+  flex: 1; /* Take up remaining space */
+  display: flex;
+  flex-direction: column;
+  padding: 40px 32px;
+  overflow-y: auto; /* Allow scrolling only on the chat side */
+  height: 100%;
+}
+
+.header-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, #ffc371, #ff5f6d, #b34bff);
+  border-radius: 16px;
+  -webkit-mask-image: url('data:image/svg+xml;charset=UTF-8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0001 21.35L10.5501 20.03C5.40008 15.36 2.00008 12.28 2.00008 8.5C2.00008 5.42 4.42008 3 7.50008 3C9.24008 3 10.9101 3.81 12.0001 5.09C13.0901 3.81 14.7601 3 16.5001 3C19.5801 3 22.0001 5.42 22.0001 8.5C22.0001 12.28 18.6001 15.36 13.4501 20.04L12.0001 21.35Z" fill="black"/></svg>');
+  mask-image: url('data:image/svg+xml;charset=UTF-8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0001 21.35L10.5501 20.03C5.40008 15.36 2.00008 12.28 2.00008 8.5C2.00008 5.42 4.42008 3 7.50008 3C9.24008 3 10.9101 3.81 12.0001 5.09C13.0901 3.81 14.7601 3 16.5001 3C19.5801 3 22.0001 5.42 22.0001 8.5C22.0001 12.28 18.6001 15.36 13.4501 20.04L12.0001 21.35Z" fill="black"/></svg>');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.new-project-button {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: var(--button-background);
+  border: 1px solid var(--input-border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.new-project-button:hover {
+  background-color: var(--button-hover-background);
+  color: var(--text-primary);
+}
+
+/* Download button shares the same look & feel but is positioned left */
+.download-project-button {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-color: var(--button-background);
+  border: 1px solid var(--input-border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.download-project-button:hover:not(:disabled) {
+  background-color: var(--button-hover-background);
+  color: var(--text-primary);
+}
+
+.download-project-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+.chat-history {
+  flex-grow: 1; /* Allow chat history to take up available space */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-right: 12px;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 18px;
+  word-wrap: break-word;
+  line-height: 1.6;
+  text-align: left;
+  max-width: 85%;
+}
+
+.message.user {
+  background-color: #007aff;
+  color: var(--text-primary);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.message.assistant {
+  background-color: var(--button-background);
+  color: var(--text-primary);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.message-content {
+  white-space: pre-wrap;
+}
+
+.input-container {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+  border-radius: 20px;
+  padding: 12px;
+  text-align: left;
+}
+
+.input-container textarea {
+  width: 100%;
+  background-color: transparent;
+  color: var(--text-primary);
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
+  padding: 8px;
+  height: 80px; /* Initial height */
+}
+
+.input-container textarea:focus {
+  outline: none;
+}
+
+.input-container textarea::placeholder {
+    color: var(--text-placeholder);
+}
+
+.input-footer {
+  display: flex;
+  justify-content: flex-end; /* Align send button to the right */
+  align-items: center;
+  margin-top: 12px;
+}
+
+.footer-actions {
+  /* This can be removed if empty, but leaving it doesn't hurt */
+  display: flex;
+  gap: 8px;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.send-button {
+  background-color: var(--button-background);
+  border: 1px solid var(--input-border);
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.send-button:hover:not(:disabled) {
+  background-color: var(--button-hover-background);
+  color: var(--text-primary);
+}
+
+.send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.preview-container {
+  flex: 1; /* Take up half the space */
+  height: 100%; /* Full height of the parent */
+  border-left: 1px solid var(--input-border); /* Add a separator */
+  margin-top: 0; /* Remove top margin */
+  border-radius: 0; /* Remove radius */
+  overflow: hidden;
+  background-color: white; /* Fallback */
+}
+
+.preview-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

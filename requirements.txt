@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pydantic
+langchain-core
+langgraph
+langgraph-checkpoint-sqlite
+chromadb
+sentence-transformers
+python-dotenv
+google-generativeai
+watchdog
+aiosqlite
+llama-cpp-python
