@@ -5,12 +5,11 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [projectPath, setProjectPath] = useState(null); // Stores path returned from backend
+  const [projectPath, setProjectPath] = useState(null); 
   const [showPreview, setShowPreview] = useState(false);
-  const [previewVersion, setPreviewVersion] = useState(0); // For forcing iframe refresh
+  const [previewVersion, setPreviewVersion] = useState(0);
 
   useEffect(() => {
-    // Welcome message on initial load
     if (messages.length === 0) {
       setMessages([
         { role: 'assistant', content: 'Ask me to create a web app that...' }
@@ -23,7 +22,7 @@ function App() {
 
     const newMessages = [...messages, { role: 'user', content: message }];
     setMessages(newMessages);
-    // setInput(''); // Removed as per user request to not clear input
+    setInput('');
     setLoading(true);
 
     try {
@@ -34,11 +33,9 @@ function App() {
       
       setMessages(prev => [...prev, { role: 'assistant', content: data.response }]);
       
-      // If the backend sends a project_path, we know it's ready for preview.
       if (data.project_path) {
         setShowPreview(true);
         setProjectPath(data.project_path);
-        // Force a refresh for both new projects and edits
         setPreviewVersion(prev => prev + 1);
       }
 
@@ -54,7 +51,6 @@ function App() {
     setLoading(true);
     try {
       await axios.post('/api/clear', { session_id: 'default' });
-      // Reset frontend state
       setMessages([
         { role: 'assistant', content: 'Ask me to create a web app that...' }
       ]);
@@ -70,16 +66,14 @@ function App() {
     }
   };
 
-  // ---------------------- Download handler ----------------------
   const handleDownload = async () => {
     if (!projectPath) return;
     try {
-      const projectName = projectPath.split('/').pop(); // Extract folder name
+      const projectName = projectPath.split('/').pop(); 
       const response = await axios.get(`/api/download/${projectName}`, {
         responseType: 'blob',
       });
 
-      // Create a link element to trigger the download
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
@@ -132,10 +126,8 @@ function App() {
           />
           <div className="input-footer">
             <div className="footer-actions">
-              {/* "Attach" and "Import" buttons removed as per user request */}
             </div>
             <div className="footer-right">
-                {/* "Public" button removed as per user request */}
                 <button className="send-button" onClick={() => sendMessage(input)} disabled={loading} title="Send Message">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7 11L12 6L17 11M12 18V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

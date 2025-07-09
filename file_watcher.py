@@ -13,7 +13,6 @@ class CodeFileHandler(FileSystemEventHandler):
     def on_modified(self, event):
         if not event.is_directory and event.src_path.endswith(('.html', '.css', '.js')):# type: ignore
             print(f"File modified: {event.src_path}")
-            # Schedule the async task on the main event loop
             asyncio.run_coroutine_threadsafe(
                 self.embedding_manager.index_file(event.src_path), 
                 self.loop
@@ -26,7 +25,6 @@ class FileWatcher:
         self.loop = None
         
     def start_watching(self, embedding_manager: EmbeddingManager, loop: asyncio.AbstractEventLoop):
-        """Start watching the generated_apps directory"""
         self.embedding_manager = embedding_manager
         self.loop = loop
         
@@ -36,7 +34,6 @@ class FileWatcher:
         print("File watcher started")
     
     def stop_watching(self):
-        """Stop watching files"""
         self.observer.stop()
         self.observer.join()
         print("File watcher stopped")

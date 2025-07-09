@@ -28,19 +28,19 @@ body {
 
 .app-container {
   display: flex;
-  flex-direction: row; /* Change to row for side-by-side layout */
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  padding: 0; /* Remove padding */
-  overflow: hidden; /* Prevent scrolling on the main container */
+  flex-direction: row; 
+  height: 100vh; 
+  width: 100vw; 
+  padding: 0;
+  overflow: hidden;
 }
 
 .main-content {
-  flex: 1; /* Take up remaining space */
+  flex: 1; 
   display: flex;
   flex-direction: column;
   padding: 40px 32px;
-  overflow-y: auto; /* Allow scrolling only on the chat side */
+  overflow-y: auto;
   height: 100%;
 }
 
@@ -91,7 +91,6 @@ body {
   color: var(--text-primary);
 }
 
-/* Download button shares the same look & feel but is positioned left */
 .download-project-button {
   position: absolute;
   top: 50%;
@@ -132,7 +131,7 @@ h1 {
 }
 
 .chat-history {
-  flex-grow: 1; /* Allow chat history to take up available space */
+  flex-grow: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -186,7 +185,7 @@ h1 {
   line-height: 1.5;
   resize: none;
   padding: 8px;
-  height: 80px; /* Initial height */
+  height: 80px;
 }
 
 .input-container textarea:focus {
@@ -199,13 +198,12 @@ h1 {
 
 .input-footer {
   display: flex;
-  justify-content: flex-end; /* Align send button to the right */
+  justify-content: flex-end;
   align-items: center;
   margin-top: 12px;
 }
 
 .footer-actions {
-  /* This can be removed if empty, but leaving it doesn't hurt */
   display: flex;
   gap: 8px;
 }
@@ -241,13 +239,13 @@ h1 {
 }
 
 .preview-container {
-  flex: 1; /* Take up half the space */
-  height: 100%; /* Full height of the parent */
-  border-left: 1px solid var(--input-border); /* Add a separator */
-  margin-top: 0; /* Remove top margin */
-  border-radius: 0; /* Remove radius */
+  flex: 1; 
+  height: 100%;
+  border-left: 1px solid var(--input-border);
+  margin-top: 0;
+  border-radius: 0;
   overflow: hidden;
-  background-color: white; /* Fallback */
+  background-color: white;
 }
 
 .preview-container iframe {
