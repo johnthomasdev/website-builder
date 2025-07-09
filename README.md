@@ -1,4 +1,4 @@
-# Website Builder – Local AI-Powered Code Assistant
+# Website Builder
 
 ## Overview
 This repository contains a **local website-builder** powered by Large-Language-Models.  You describe the web-site you want in plain English and the agent automatically generates:
