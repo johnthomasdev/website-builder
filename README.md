@@ -1,7 +1,7 @@
 # Website Builder
 
 ## Overview
-This repository contains a **local website-builder** powered by Large-Language-Models. You describe the website you want in plain English and the agent automatically generates:
+This repository contains a **website-builder** powered by Large-Language-Models. You describe the website you want in plain English and the agent automatically generates:
 
 * `index.html` – full semantic HTML
 * `styles.css` – clean, responsive CSS
@@ -48,7 +48,6 @@ website-builder/
 ├── file_watcher.py         # Watchdog integration
 ├── generated_apps/         # Output projects (auto-created)
 ├── chroma_db/              # Persistent vector store
-├── models/                 # (Optional) local GGUF weights
 └── frontend/               # React SPA (Vite)
 ```
 
@@ -101,6 +100,5 @@ Try prompts like:
 * **Hot-Reload** – frontend uses Vite; run `npm run dev` inside `frontend/` while the backend runs separately.
 * **Persistent State** – LangGraph checkpoints stored in `langgraph_state.sqlite`.
 * **Vector Store** – ChromaDB files live in `chroma_db/`.
-* **Large Models** – If you want full local inference you can place GGUF weights inside `models/` and wire up an alternative `LLMClient`.
 
 ---
