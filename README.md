@@ -18,8 +18,23 @@ The frontend (in `frontend/`) is a minimal **React + Vite** single-page-app that
 
 ---
 
+
+## Screenshots
+
+<p align="center">
+  <img src="images/initial.png" alt="Initial UI" width="600"/>
+</p>
+<p align="center">
+  <img src="images/generated-website.png" alt="Generated Website Example" width="600"/>
+</p>
+
+---
+
 ## Key Features
 * **Prompt-to-Website** – describe the desired site and receive HTML/CSS/JS.
+* **Smart Web Search** – automatically searches for working image URLs, website cloning info, and design inspiration.
+* **Website Cloning** – provide any website URL and it will search and recreate the layout/design.
+* **Working Images** – searches for and uses actual loadable image URLs instead of placeholders.
 * **Iterative Editing** – keep chatting to refine an existing project; the agent keeps state across turns via SQLite checkpoints.
 * **RAG** – the agent can pull context from past code snippets to stay consistent.
 * **Embeddings on save** – any manual edits are automatically re-indexed so the AI is aware of them.
@@ -55,7 +70,13 @@ pip install -r requirements.txt
 Create a `.env` file in the project root:
 ```env
 GOOGLE_API_KEY=your_gemini_key_here
+TAVILY_API_KEY=your_tavily_key_here  # For web search (image URLs, website cloning)
 ```
+
+**Note:** The `TAVILY_API_KEY` is optional but highly recommended for:
+- Getting working image URLs that actually load
+- Cloning websites when given a URL
+- Finding current design trends and examples
 
 ### 3. Start the server
 ```bash
@@ -72,6 +93,32 @@ Navigate to `http://localhost:8000` to open the UI.
 | POST   | `/api/clear` | (optional `session_id`) | Reset agent state, DB & generated files |
 | GET    | `/api/download/{project_name}` |  | Download ZIP of a generated site |
 | GET    | `/generated/{project_name}/{path}` |  | Serve individual generated files |
+
+---
+
+## Web Search Examples
+
+The agent will automatically search the web when you make requests like:
+
+### 🖼️ **Working Images**
+- *"Create a portfolio site with high-quality nature photos"*
+- *"Add a hero section with professional headshot images"*
+- *"Include a gallery of working car images"*
+
+### 🌐 **Website Cloning**
+- *"Clone the design of https://stripe.com"*
+- *"Make it look like https://github.com"*
+- *"Copy the layout from https://tailwindcss.com"*
+
+### 🎨 **Design Inspiration**
+- *"Create a modern SaaS landing page"*
+- *"Make it look like Apple's website"*
+- *"Use current design trends for a restaurant site"*
+
+### 🏢 **Logo Images**
+- *"Add the Nike logo to the header"*
+- *"Include the company logo for Tesla"*
+- *"Find and use the OpenAI logo"*
 
 ---
 
