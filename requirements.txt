@@ -11,3 +11,4 @@ google-generativeai
 watchdog
 aiosqlite
 llama-cpp-python
+ollama
