@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: website-builder
+    env: python
+    buildCommand: "pip install -r requirements.txt && cd frontend && npm install && npm run build"
+    startCommand: "python main.py --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11
+    disk:
+      name: generated-apps
+      mountPath: /opt/render/project/src/generated_apps
+      sizeGB: 1
